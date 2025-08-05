@@ -5,6 +5,7 @@
 #ifndef TEST_SIMPLE_SHARED_PTR_H
 #define TEST_SIMPLE_SHARED_PTR_H
 
+#include "Test.h"
 #include <iostream>
 
 namespace test {

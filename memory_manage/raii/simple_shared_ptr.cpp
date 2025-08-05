@@ -59,6 +59,8 @@ namespace test {
         if (sharedPtr.ptr_ != nullptr) {
             block_->ref_count++;
         }
+
+        return *this;
     }
 
     template<typename T>
@@ -79,6 +81,7 @@ namespace test {
 
         sharedPtr.ptr_ = nullptr;
         sharedPtr.block_ = nullptr;
+        return *this;
     }
 
     template<typename T>
@@ -135,4 +138,5 @@ namespace test {
         block_ = nullptr;
     }
 
+    template class simple_shared_ptr<Test>;
 } // namespace test

@@ -1,0 +1,112 @@
+# 编译产物
+## 通用编译产物
+*.o
+*.obj
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.lib
+*.a
+
+# 构建目录
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+compile_commands.json
+
+# IDE相关
+## CLion
+.clion/
+.clionrc
+
+## VS Code
+.vscode/
+
+## Visual Studio
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Xcode
+*.pbxproj
+*.xcworkspace
+xcuserdata/
+
+# 调试和测试相关
+## GDB
+*.gdb
+*.gdb_history
+
+## Valgrind
+valgrind.log*
+vgcore.*
+
+## AddressSanitizer等工具输出
+ASAN_OPTIONS=*:
+LSAN_OPTIONS=*:
+
+# 临时文件和编辑器文件
+*~
+*.swp
+*.swo
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+
+# CMake特定文件
+CMakeLists.txt.user
+CMakeScripts/
+Testing/
+CMakeOutput.log
+CMakeError.log
+
+# Conan包管理器
+conan.lock
+conanbuildinfo.*
+conaninfo.txt
+conan_imports_manifest.txt
+
+# vcpkg包管理器
+vcpkg/
+vcpkg_installed/
+
+# 自定义可执行文件
+*.out
+*.run
+raii  # 你项目中的可执行文件
+
+# Coverage相关
+*.gcda
+*.gcno
+*.gcov
+lcov/
+coverage/
+coverage.info
+
+# Doxygen
+/html/
+/latex/
+/man/
+doxygen.log
+
+# Clang相关
+*.plist
+compile_commands.json
+
+# 其他可能的临时文件
+core
+core.*
