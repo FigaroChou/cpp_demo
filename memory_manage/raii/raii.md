@@ -26,3 +26,40 @@
   - 和引用对象共享内存，指定固定数量的字节，好处是，若产生竞态条件，可一次兼顾多个资源[个人理解]
   - 单独的计数器，好处是，计数器可以独立于资源对象存在，若计数器为宽泛概念，方便扩展
 - 释放资源时机: 引用计数为0
+
+### 三、智能指针的使用
+#### 3.1 shared_ptr
+**概述**：允许共享，支持移动、拷贝语义
+上个案例中，已写了简单的shared_ptr，所以不做具体介绍
+一些注意事项：
+- 使用shared_ptr，创建的裸指针只让智能指针使用，如下
+- std::shared_ptr<A> ptr(new A())
+- std::shared_ptr<A> ptr = std::make_shared<A>()
+
+#### 3.2 unique_ptr
+**概述**：不共享，独占，支持移动，无拷贝语义，无引用计数
+一些注意事项：
+- 使用shared_ptr，创建的裸指针只让智能指针使用，如下
+- std::unique_ptr<A> ptr(new A())
+- std::unique_ptr<A> ptr = std::make_shared<A>()
+
+#### 3.3 weak_ptr
+**概述**：std::weak_ptr 是一种不拥有对象所有权的智能指针，用于观察但不影响对象的生命周期。主要用于解决 shared_ptr 之间的循环引用问题。
+- 可从 shared_ptr 创建，不导致 shared_ptr 的强引用计数增加，但会让 weak_ptr 的弱引用增加
+- 解决循环依赖问题
+特殊API：
+- expired 观察的shared_ptr是否过期(use_count == 0)
+- lock() 返回一个 shared_ptr，如果对象依然存在，则有效。
+- reset() 释放资源后，wp.lock() 无法获取有效的 shared_ptr。
+
+#### 3.4 资源回收
+**问题引入**：智能指针的回收为delete，但一些资源的释放不能这么直接。如 文件 / socket 的句柄
+**自定义行为**：需要可调用实体。如：
+- 函数指针
+- function 函数类型
+- lambda
+- 仿函数
+- bind 修剪的函数结果
+使用区别：
+- shared_ptr 构造函数传参即可
+- unique_ptr 还需指定 deleter 模板参数，不知道，就用decltype推导

@@ -3,6 +3,8 @@
 //
 
 #include "simple_shared_ptr.h"
+#include "resource_manager.h"
+#include "ptr_cases.h"
 #include <iostream>
 
 using namespace test;
@@ -44,6 +46,18 @@ void simple_shared_ptr_case() {
     std::cout << "End of main." << std::endl;
 }
 
+void resource_manager_case() {
+    resource_manager resourceManager(1);
+    std::cout << resourceManager.getValue() << std::endl;
+    resourceManager.setValue(12);
+    std::cout << resourceManager.getValue() << std::endl;
+}
+
 int main() {
-    simple_shared_ptr_case();
+//    simple_shared_ptr_case();
+
+    shared_ptr_recycle_ref_case();
+//    decltype()
+
+    resource_manager_case();
 }
